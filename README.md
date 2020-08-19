@@ -16,10 +16,6 @@ It demonstrates the use of jest for testing in javascript.
 
 - [NPM](https://www.npmjs.com/)
 
-## Live Demo
-
-[2du](https://2du.netlify.app)
-
 ### Development (Running locally)
 
 - Clone the project
@@ -33,18 +29,6 @@ git clone https://github.com/adejam/javascript-testing.git
 
 ```bash
 npm install
-```
-
-To run StyleLint by itself, you may run the lint task:
-
-```bash
-npm run lint:check
-```
-
-Or to automatically fix issues found (where possible):
-
-```bash
-npm run lint
 ```
 
 You can also check against Prettier:
