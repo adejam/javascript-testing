@@ -22,6 +22,6 @@
     "stylelint:check": "npx stylelint **/*.css",
     "eslint": "npx eslint . --fix",
     "eslint:check": "npx eslint .",
-    "jest": "jest"
+    "test": "jest"
   }
 }
