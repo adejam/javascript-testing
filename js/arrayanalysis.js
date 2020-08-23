@@ -1,14 +1,12 @@
-function averageFunc(arr) {
+const averageFunc = arr => {
   const sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue);
   return sum / arr.length;
-}
-const analyze = arr => {
-  const obj = {};
-  obj.average = averageFunc(arr);
-  obj.min = Math.min(...arr);
-  obj.max = Math.max(...arr);
-  obj.lengthOfArray = arr.length;
-  return obj;
 };
+const analyze = arr => ({
+  average: averageFunc(arr),
+  min: Math.min(...arr),
+  max: Math.max(...arr),
+  lengthOfArray: arr.length,
+});
 
 module.exports = analyze;

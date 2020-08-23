@@ -1,97 +1,47 @@
-const aNumObj = {
-  a: 1,
-  b: 2,
-  c: 3,
-  d: 4,
-  e: 5,
-  f: 6,
-  g: 7,
-  h: 8,
-  i: 9,
-  j: 10,
-  k: 11,
-  l: 12,
-  m: 13,
-  n: 14,
-  o: 15,
-  p: 16,
-  q: 17,
-  r: 18,
-  s: 19,
-  t: 20,
-  u: 21,
-  v: 22,
-  w: 23,
-  x: 24,
-  y: 25,
-  z: 26,
-};
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
 
-const numAObj = {
-  1: 'a',
-  2: 'b',
-  3: 'c',
-  4: 'd',
-  5: 'e',
-  6: 'f',
-  7: 'g',
-  8: 'h',
-  9: 'i',
-  10: 'j',
-  11: 'k',
-  12: 'l',
-  13: 'm',
-  14: 'n',
-  15: 'o',
-  16: 'p',
-  17: 'q',
-  18: 'r',
-  19: 's',
-  20: 't',
-  21: 'u',
-  22: 'v',
-  23: 'w',
-  24: 'x',
-  25: 'y',
-  26: 'z',
-};
-function encryptPusher(ind, count) {
-  if (ind <= 26) {
-    count.push(numAObj[ind]);
-  } else {
-    count.push(numAObj[(ind -= 26)]);
-  }
-  return count;
-}
+const lowerLetters = 'abcdefghijklmnopqrstuvwxyz';
+const lowerLettersSplit = lowerLetters.split('');
+const upperLetters = lowerLetters.toUpperCase();
+const upperLettersSplit = upperLetters.split('');
 
-function decryptPusher(ind, count) {
-  if (ind >= 1) {
-    count.push(numAObj[ind]);
-  } else {
-    count.push(numAObj[(ind += 26)]);
-  }
-  return count;
-}
-
-function cipher(string, key, type) {
-  const check = new RegExp(/^([a-z])*$/i);
-
-  if (check.test(string) === true) {
-    const count = [];
-    const stringToLower = string.toLowerCase();
-    for (let i = 0; i < stringToLower.length; i += 1) {
-      let ind = 0;
+const pushEncryptedLetter = (letter, alphabetType, key, type, result) => {
+  for (let k = 0; k < alphabetType.length; k += 1) {
+    let indexToPush = 0;
+    if (letter === alphabetType[k]) {
       if (type === 'encrypt') {
-        ind = aNumObj[stringToLower[i]] + key;
-        encryptPusher(ind, count);
-      } else if (type === 'decrypt') {
-        ind = aNumObj[stringToLower[i]] - key;
-        decryptPusher(ind, count);
+        indexToPush = k + key;
+        const withinRange = alphabetType[indexToPush];
+        const outOfRange = alphabetType[indexToPush - 26];
+        indexToPush <= 26 ? result.push(withinRange) : result.push(outOfRange);
+      } else {
+        indexToPush = k - key;
+        const withinRange = alphabetType[indexToPush];
+        const outOfRange = alphabetType[indexToPush + 26];
+        indexToPush >= 1 ? result.push(withinRange) : result.push(outOfRange);
       }
     }
-    return count.join('');
   }
-  return 'All characters must be letters only';
+  return result;
+};
+
+function cipher(string, key, type) {
+  const result = [];
+  const stringSplit = string.split('');
+  for (let i = 0; i < stringSplit.length; i += 1) {
+    if (lowerLettersSplit.indexOf(stringSplit[i]) === -1) {
+      if (upperLettersSplit.indexOf(stringSplit[i]) === -1) {
+        result.push(stringSplit[i]);
+      } else {
+        const argArray = [stringSplit[i], upperLettersSplit, key, type, result];
+        pushEncryptedLetter(...argArray);
+      }
+    } else {
+      const argArray = [stringSplit[i], lowerLettersSplit, key, type, result];
+      pushEncryptedLetter(...argArray);
+    }
+  }
+  return result.join('');
 }
 
 module.exports = cipher;
