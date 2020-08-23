@@ -10,6 +10,11 @@ It demonstrates the use of jest for testing in javascript.
 
 - Javascript
 
+  - Arrow function.
+  - Spread Operator
+  - reduce() method
+  - Ternary Operators and more ES6 based syntax.
+
 - Jest
 
 - [stylint](https://stylelint.io/)
