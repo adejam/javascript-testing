@@ -1,4 +1,4 @@
-const analyze = require('./arrayanalysis');
+import analyze from './arrayanalysis';
 
 test('analyze function exists', () => {
   expect(analyze).toBeDefined();

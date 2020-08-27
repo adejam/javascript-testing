@@ -9,4 +9,4 @@ const analyze = arr => ({
   lengthOfArray: arr.length,
 });
 
-module.exports = analyze;
+export default analyze;

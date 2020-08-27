@@ -1,4 +1,4 @@
-const cipher = require('./cipher');
+import cipher from './cipher';
 
 test('cipher function exists', () => {
   expect(cipher).toBeDefined();
@@ -26,4 +26,12 @@ test('cipher function encrypts and keeps punctuation', () => {
 
 test('cipher function decrypts and keeps punctuation', () => {
   expect(cipher('mJQ/,.qt', 5, 'decrypt')).toBe('hEL/,.lo');
+});
+
+test('cipher function encrypts a sentence', () => {
+  expect(cipher('Hello world. I am Jamiu', 5, 'encrypt')).toBe('Mjqqt btwqi. N fr Ofrnz');
+});
+
+test('cipher function decrypts a sentence', () => {
+  expect(cipher('Mjqqt btwqi. N fr Ofrnz', 5, 'decrypt')).toBe('Hello world. I am Jamiu');
 });

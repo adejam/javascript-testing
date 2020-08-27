@@ -18,7 +18,7 @@ const pushEncryptedLetter = (letter, alphabetType, key, type, result) => {
         indexToPush = k - key;
         const withinRange = alphabetType[indexToPush];
         const outOfRange = alphabetType[indexToPush + 26];
-        indexToPush >= 1 ? result.push(withinRange) : result.push(outOfRange);
+        indexToPush >= 0 ? result.push(withinRange) : result.push(outOfRange);
       }
     }
   }

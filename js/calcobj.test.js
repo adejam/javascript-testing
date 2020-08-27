@@ -1,4 +1,4 @@
-const calcObj = require('./calcobj');
+import calcObj from './calcobj';
 
 test('calcObj object exists', () => {
   expect(calcObj).toBeDefined();

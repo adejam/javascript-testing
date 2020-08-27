@@ -1,4 +1,4 @@
-const capitalizeString = require('./index');
+import capitalizeString from './index';
 
 test('capitalizeString function exists', () => {
   expect(capitalizeString).toBeDefined();
