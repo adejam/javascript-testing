@@ -1,6 +1,7 @@
-const startApp = () => {
-  const body = document.querySelector('body');
-  body.innerHTML = '<h2>JAVASCRIPT ENABLED</h2>';
+const capitalizeString = str => {
+  const firstLetter = str.charAt(0).toUpperCase();
+  const otherLetters = str.slice(1);
+  return firstLetter + otherLetters;
 };
 
-startApp();
+module.exports = capitalizeString;
